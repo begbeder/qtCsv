@@ -28,6 +28,7 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QPushButton *readFileButton;
+    QPushButton *addNoteButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -42,6 +43,9 @@ public:
         readFileButton = new QPushButton(centralWidget);
         readFileButton->setObjectName(QStringLiteral("readFileButton"));
         readFileButton->setGeometry(QRect(80, 50, 121, 28));
+        addNoteButton = new QPushButton(centralWidget);
+        addNoteButton->setObjectName(QStringLiteral("addNoteButton"));
+        addNoteButton->setGeometry(QRect(80, 100, 121, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -63,6 +67,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         readFileButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\321\207\320\270\321\202\320\260\321\202\321\214 \321\204\320\260\320\271\320\273", nullptr));
+        addNoteButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\267\320\260\320\277\320\270\321\201\321\214", nullptr));
     } // retranslateUi
 
 };

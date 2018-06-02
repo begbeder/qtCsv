@@ -18,6 +18,8 @@ public:
 private slots:
     void on_readFileButton_clicked();
 
+    void on_addNoteButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -28,6 +28,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
         ui->tableView->setModel(csvModel);
 
+        // Включена встроенная сортировка по полям таблицы
+        ui->tableView->setSortingEnabled(true);
+        ui->tableView->horizontalHeader()->sortIndicatorOrder();
+
         for (int i = 0; i < resultList.size(); i++)
         {
             QString resultListItem = resultList[i];

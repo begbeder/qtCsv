@@ -69,10 +69,12 @@ public:
         listStatusLabel->setFont(font);
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(460, 120, 521, 331));
+        tableView->setGeometry(QRect(350, 120, 631, 331));
+        tableView->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
+        tableView->verticalHeader()->setProperty("showSortIndicator", QVariant(true));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(460, 90, 141, 16));
+        label_2->setGeometry(QRect(350, 90, 141, 16));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));

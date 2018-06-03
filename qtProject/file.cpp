@@ -4,31 +4,36 @@
 #include <QDebug>
 
 // Метод чтения данных из файла csv
-void readCsvFile () {
+QStringList readCsvFile () {
     QFile file("data.csv");
+
+    // Создаем контейнер для заполнения
+    QStringList strList;
 
     // Проверяем существование файла и открываем его в режиме Только чтение
     if ((file.exists()) && (file.open(QIODevice::ReadOnly)))
     {
         // Записываем данные из файла построчно в контейнер
-        QStringList strList ;
         while(!file.atEnd())
         {
             strList << file.readLine();
         }
-        // ui->textBrowser->setText(strList);
-        qDebug() << strList;
 
         file.close();
     }
     else
     {
+        // Можно сделать вывод ошибки, например, в ui->statusBar->setText("File is not exists");
+        // Или в окно с ошибкой, так даже будет универальнее
         qDebug() << "File is not exists";
     }
+
+    qDebug() << strList;
+    return strList;
 }
 
 // Метод сохранения данных в файл csv
-void saveCsvFile (QString mode) {
+void saveCsvFile (QString mode, QString str) {
     QFile file("data.csv");
     // Считываем исходный файл в контейнер
     QStringList strList;
@@ -61,10 +66,8 @@ void saveCsvFile (QString mode) {
         if (mode == "append")
         {
             //qDebug() << newStr;
-            QString name = "name";
-            QString lastname = "lastname";
-            qDebug() << name + "," + lastname + "\n";
-            strList.append(name + "," + lastname + "\n");
+            qDebug() << str + "\n";
+            strList.append(str + "\n");
         }
 
         QTextStream stream(&file);

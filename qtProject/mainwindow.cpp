@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
+// Подключаем форму создания нового пользователя
+#include "createitemwindow.h"
+
 // Подключаем модуль для работы с файлом
 #include "file.h"
 #include <QTextStream>
@@ -10,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Добавляем обработчики событий нажатия кнопок
+    connect(ui->createItemButton, SIGNAL(clicked()),this, SLOT(createItemButton_clicked()));
 
     // Запускаем проверку наличия записей в файле
     QStringList resultList;
@@ -63,4 +70,16 @@ void MainWindow::on_addNoteButton_clicked()
     QString newNote = "Ivan,Petrov,Program1,1";
 
     saveCsvFile("append", newNote);
+}
+
+void MainWindow::createItemButton_clicked()
+{
+    // По клику на кнопку создается экземпляр нового окна
+    // Создание экземпляра класса CreateItemWindow
+    // this - контекстный объект родительского класса
+    CreateItemWindow createItemWindow;
+
+    // Вызов необходимых методов
+    createItemWindow.setModal(true);
+    createItemWindow.exec();
 }

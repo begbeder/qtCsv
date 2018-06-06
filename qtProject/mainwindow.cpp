@@ -30,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         // Создаем модель таблицы файла данных
         csvModel = new QStandardItemModel(this);
-        csvModel->setColumnCount(4);
-        csvModel->setHorizontalHeaderLabels(QStringList() << "Имя" << "Фамилия" << "Программа" << "Год обучения");
+        csvModel->setColumnCount(5);
+        csvModel->setHorizontalHeaderLabels(QStringList() << "Имя" << "Фамилия" << "Дата рождения" << "Программа" << "Год обучения");
 
         ui->tableView->setModel(csvModel);
 

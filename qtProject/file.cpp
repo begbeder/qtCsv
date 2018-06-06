@@ -11,7 +11,7 @@ QStringList readCsvFile () {
     QStringList strList;
 
     // Проверяем существование файла и открываем его в режиме Только чтение
-    if ((file.exists()) && (file.open(QIODevice::ReadOnly)))
+    if ((file.exists()) && (file.open(QIODevice::ReadOnly|QIODevice::Text)))
     {
         // Записываем данные из файла построчно в контейнер
         while(!file.atEnd())
@@ -28,7 +28,7 @@ QStringList readCsvFile () {
         qDebug() << "File is not exists";
     }
 
-    qDebug() << strList;
+    // qDebug() << strList;
     return strList;
 }
 
@@ -43,6 +43,9 @@ void saveCsvFile (QString mode, QString str) {
         while(!file.atEnd())
         {
             strList << file.readLine();
+            // QString fileLine = file.readLine();
+
+            // strList << fileLine.toUtf8();
         }
 
         file.close();

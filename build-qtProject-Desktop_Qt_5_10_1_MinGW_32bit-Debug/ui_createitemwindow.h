@@ -38,6 +38,7 @@ public:
     QLabel *label_6;
     QComboBox *listLearningYear;
     QPushButton *saveUserButton;
+    QLabel *errorLabel;
 
     void setupUi(QDialog *CreateItemWindow)
     {
@@ -80,6 +81,9 @@ public:
         saveUserButton = new QPushButton(CreateItemWindow);
         saveUserButton->setObjectName(QStringLiteral("saveUserButton"));
         saveUserButton->setGeometry(QRect(12, 290, 251, 28));
+        errorLabel = new QLabel(CreateItemWindow);
+        errorLabel->setObjectName(QStringLiteral("errorLabel"));
+        errorLabel->setGeometry(QRect(10, 340, 251, 21));
 
         retranslateUi(CreateItemWindow);
 
@@ -96,6 +100,7 @@ public:
         label_5->setText(QApplication::translate("CreateItemWindow", "\320\237\321\200\320\276\320\263\321\200\320\260\320\274\320\274\320\260", nullptr));
         label_6->setText(QApplication::translate("CreateItemWindow", "\320\223\320\276\320\264 \320\276\320\261\321\203\321\207\320\265\320\275\320\270\321\217", nullptr));
         saveUserButton->setText(QApplication::translate("CreateItemWindow", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", nullptr));
+        errorLabel->setText(QString());
     } // retranslateUi
 
 };

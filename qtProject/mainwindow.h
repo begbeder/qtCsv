@@ -23,6 +23,8 @@ private slots:
 
     // Добавлен обработчик открытия окна создания новой записи
     void createItemButton_clicked();
+    void on_showListButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *csvModel;

@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -36,6 +37,10 @@ public:
     QLabel *listStatusLabel;
     QTableView *tableView;
     QLabel *label_2;
+    QLabel *label_3;
+    QPushButton *showListButton;
+    QListWidget *listLearningProgram;
+    QListWidget *listLearningYear;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -75,6 +80,18 @@ public:
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(350, 90, 141, 16));
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(20, 90, 131, 16));
+        showListButton = new QPushButton(centralWidget);
+        showListButton->setObjectName(QStringLiteral("showListButton"));
+        showListButton->setGeometry(QRect(10, 120, 311, 28));
+        listLearningProgram = new QListWidget(centralWidget);
+        listLearningProgram->setObjectName(QStringLiteral("listLearningProgram"));
+        listLearningProgram->setGeometry(QRect(10, 160, 311, 121));
+        listLearningYear = new QListWidget(centralWidget);
+        listLearningYear->setObjectName(QStringLiteral("listLearningYear"));
+        listLearningYear->setGeometry(QRect(10, 310, 311, 141));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -101,6 +118,8 @@ public:
         createItemButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\275\320\276\320\262\321\203\321\216 \320\267\320\260\320\277\320\270\321\201\321\214", nullptr));
         listStatusLabel->setText(QString());
         label_2->setText(QApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\320\275\320\275\321\213\320\265 \320\267\320\260\320\277\320\270\321\201\320\270", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 \320\267\320\260\320\277\320\270\321\201\320\265\320\271", nullptr));
+        showListButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214 \320\267\320\260\320\277\320\270\321\201\320\270", nullptr));
     } // retranslateUi
 
 };

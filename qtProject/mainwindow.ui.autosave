@@ -90,9 +90,9 @@
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>120</y>
+      <y>160</y>
       <width>631</width>
-      <height>331</height>
+      <height>291</height>
      </rect>
     </property>
     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
@@ -112,7 +112,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Созданные записи</string>
+     <string>Найденные записи</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -159,6 +159,42 @@
       <width>311</width>
       <height>141</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="searchInput">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>120</y>
+      <width>131</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>120</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Поиск</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>120</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Найти</string>
     </property>
    </widget>
   </widget>

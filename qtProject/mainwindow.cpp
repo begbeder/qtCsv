@@ -53,6 +53,17 @@ MainWindow::MainWindow(QWidget *parent) :
             csvModel->insertRow(csvModel->rowCount(), standardItemsList);
         }
     }
+
+    // Заполняем список фильтров
+    // Варианты программ
+    ui->listLearningProgram->addItem("Клавиши");
+    ui->listLearningProgram->addItem("Духовые");
+    ui->listLearningProgram->addItem("Струнные");
+
+    // Срок обучения
+    ui->listLearningYear->addItem("1 год");
+    ui->listLearningYear->addItem("2 год");
+    ui->listLearningYear->addItem("3 год");
 }
 
 MainWindow::~MainWindow()
@@ -82,4 +93,51 @@ void MainWindow::createItemButton_clicked()
     // Вызов необходимых методов
     createItemWindow.setModal(true);
     createItemWindow.exec();
+}
+
+void MainWindow::on_showListButton_clicked()
+{
+    // Метод поиска записей по данным фильтра
+    QString currentLearningProgram = ui->listLearningProgram->currentItem()->text();
+    QString currentLearningYear = ui->listLearningYear->currentItem()->text();
+
+    // Очистка предыдущего результата
+    csvModel->clear();
+    csvModel->setHorizontalHeaderLabels(QStringList() << "Имя" << "Фамилия" << "Дата рождения" << "Программа" << "Год обучения");
+
+    // Запускаем проверку наличия записей в файле
+    QStringList resultList;
+    resultList = readCsvFile();
+
+    if (!resultList.size())
+    {
+        ui->listStatusLabel->setText("Не найдено подходящих записей.");
+    }
+    else
+    {
+        ui->tableView->setModel(csvModel);
+
+        for (int i = 0; i < resultList.size(); i++)
+        {
+            QString resultListItem = resultList[i];
+            QList<QStandardItem *> standardItemsList;
+
+            // Разбиваем строку из файла на элементы, разделенные запятой и записываем в переменную
+            for (QString item : resultListItem.split(",")) {
+                // Модель строки из файла
+                // name,lastname,date,program,year
+
+                // .simplified() - убирает переносы и др спец символы
+                standardItemsList.append(new QStandardItem(item.simplified()));
+            }
+            // Анализируем преобразованную строку,
+            // если удовлетворяет условиям фильтра добавляем в список
+
+            if (standardItemsList[3]->text() == currentLearningProgram && standardItemsList[4]->text() == currentLearningYear) {
+                // Добавляем в модель преобразованную запись из файла
+                csvModel->insertRow(csvModel->rowCount(), standardItemsList);
+            }
+
+        }
+    }
 }

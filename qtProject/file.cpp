@@ -43,9 +43,6 @@ void saveCsvFile (QString mode, QString str) {
         while(!file.atEnd())
         {
             strList << file.readLine();
-            // QString fileLine = file.readLine();
-
-            // strList << fileLine.toUtf8();
         }
 
         file.close();

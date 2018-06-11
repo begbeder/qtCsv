@@ -28,16 +28,17 @@ QStringList readCsvFile () {
         qDebug() << "File is not exists";
     }
 
-    // qDebug() << strList;
+
     return strList;
 }
 
 // Метод сохранения данных в файл csv
 void saveCsvFile (QString mode, QString str) {
     QFile file("data.csv");
+
     // Считываем исходный файл в контейнер
     QStringList strList;
-    // (file.exists())&&
+
     if ((file.open(QIODevice::ReadOnly)))
     {
         while(!file.atEnd())
@@ -53,7 +54,6 @@ void saveCsvFile (QString mode, QString str) {
     }
 
     // Добавляем строку и сохраняем содержимое контейнера в тот же файл
-    // (file.exists())&&
     if ((file.open(QIODevice::WriteOnly)))
     {
         // Пока не реализованный режим обновления существующей записи
@@ -65,8 +65,6 @@ void saveCsvFile (QString mode, QString str) {
         // Режим добавления записи в конец файла
         if (mode == "append")
         {
-            //qDebug() << newStr;
-            qDebug() << str + "\n";
             strList.append(str + "\n");
         }
 

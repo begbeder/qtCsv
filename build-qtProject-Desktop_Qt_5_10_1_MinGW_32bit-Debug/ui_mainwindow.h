@@ -100,7 +100,7 @@ public:
         searchButton->setGeometry(QRect(500, 120, 93, 31));
         showFullListButton = new QPushButton(centralWidget);
         showFullListButton->setObjectName(QStringLiteral("showFullListButton"));
-        showFullListButton->setGeometry(QRect(840, 120, 161, 28));
+        showFullListButton->setGeometry(QRect(830, 120, 161, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));

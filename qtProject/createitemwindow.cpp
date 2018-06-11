@@ -1,10 +1,13 @@
 #include "createitemwindow.h"
 #include "ui_createitemwindow.h"
 
+// Подключаем модуль для работы с фильтром
+#include "filter.h"
+
 // Подключаем модуль для работы с файлом
 #include "file.h"
-// #include <QTextStream>
 #include <QDebug>
+#include <QMessageBox>
 
 CreateItemWindow::CreateItemWindow(QWidget *parent) :
     QDialog(parent),
@@ -14,14 +17,14 @@ CreateItemWindow::CreateItemWindow(QWidget *parent) :
 
     // Заполняем список фильтров
     // Варианты программ
-    ui->listLearningProgram->addItem("Клавиши");
-    ui->listLearningProgram->addItem("Духовые");
-    ui->listLearningProgram->addItem("Струнные");
+    for (int i = 0; i < listLearningProgramOptions.size(); ++i) {
+        ui->listLearningProgram->addItem(listLearningProgramOptions.at(i).toLocal8Bit().constData());
+    }
 
     // Срок обучения
-    ui->listLearningYear->addItem("1 год");
-    ui->listLearningYear->addItem("2 год");
-    ui->listLearningYear->addItem("3 год");
+    for (int i = 0; i < listLearningYearOptions.size(); ++i) {
+        ui->listLearningYear->addItem(listLearningYearOptions.at(i).toLocal8Bit().constData());
+    }
 }
 
 CreateItemWindow::~CreateItemWindow()
@@ -70,7 +73,7 @@ void CreateItemWindow::on_saveUserButton_clicked()
         saveCsvFile("append", newNote);
 
         // Выводим сообщение об успешном сохранении
-        ui->errorLabel->setText("Запись успешно сохранена!");
+        QMessageBox::about(this, "Результат запроса", "Запись успешно сохранена!");
 
         // После успешного сохранения очищаем форму
         ui->userName->clear();

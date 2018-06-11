@@ -32,7 +32,8 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     file.h \
-    createitemwindow.h
+    createitemwindow.h \
+    filter.h
 
 FORMS += \
         mainwindow.ui \

@@ -5,6 +5,9 @@
 // Подключаем форму создания нового пользователя
 #include "createitemwindow.h"
 
+// Подключаем модуль для работы с фильтром
+#include "filter.h"
+
 // Подключаем модуль для работы с файлом
 #include "file.h"
 #include <QTextStream>
@@ -21,14 +24,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Заполняем список фильтров
     // Варианты программ
-    ui->listLearningProgram->addItem("Клавиши");
-    ui->listLearningProgram->addItem("Духовые");
-    ui->listLearningProgram->addItem("Струнные");
+    for (int i = 0; i < listLearningProgramOptions.size(); ++i) {
+        ui->listLearningProgram->addItem(listLearningProgramOptions.at(i).toLocal8Bit().constData());
+    }
 
     // Срок обучения
-    ui->listLearningYear->addItem("1 год");
-    ui->listLearningYear->addItem("2 год");
-    ui->listLearningYear->addItem("3 год");
+    for (int i = 0; i < listLearningYearOptions.size(); ++i) {
+        ui->listLearningYear->addItem(listLearningYearOptions.at(i).toLocal8Bit().constData());
+    }
+
+    // Отображаем все записи при загрузке окна
+    on_showFullListButton_clicked();
 }
 
 MainWindow::~MainWindow()

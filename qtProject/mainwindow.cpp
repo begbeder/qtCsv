@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 // Подключаем форму создания нового пользователя
 #include "createitemwindow.h"
@@ -24,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     if (!resultList.size())
     {
-        ui->listStatusLabel->setText("Пока не создано ни одной записи.");
+        QMessageBox::about(this, "Результат запроса", "Записи отсутствуют!");
     }
     else
     {
@@ -52,6 +53,11 @@ MainWindow::MainWindow(QWidget *parent) :
             // Добавляем в модель преобразованную запись из файла
             csvModel->insertRow(csvModel->rowCount(), standardItemsList);
         }
+
+        // Выводим сообщение если ничего не найдено
+        if (!csvModel->rowCount()) {
+            QMessageBox::about(this, "Результат запроса", "Записи отсутствуют!");
+        }
     }
 
     // Заполняем список фильтров
@@ -69,18 +75,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_readFileButton_clicked()
-{
-    // readCsvFile();
-}
-
-void MainWindow::on_addNoteButton_clicked()
-{
-    QString newNote = "Ivan,Petrov,Program1,1";
-
-    saveCsvFile("append", newNote);
 }
 
 void MainWindow::createItemButton_clicked()
@@ -111,7 +105,7 @@ void MainWindow::on_showListButton_clicked()
 
     if (!resultList.size())
     {
-        ui->listStatusLabel->setText("Не найдено подходящих записей.");
+        QMessageBox::about(this, "Результат запроса", "Записи отсутствуют!");
     }
     else
     {
@@ -132,12 +126,65 @@ void MainWindow::on_showListButton_clicked()
             }
             // Анализируем преобразованную строку,
             // если удовлетворяет условиям фильтра добавляем в список
-
             if (standardItemsList[3]->text() == currentLearningProgram && standardItemsList[4]->text() == currentLearningYear) {
                 // Добавляем в модель преобразованную запись из файла
                 csvModel->insertRow(csvModel->rowCount(), standardItemsList);
             }
+        }
 
+        // Выводим сообщение если ничего не найдено
+        if (!csvModel->rowCount()) {
+            QMessageBox::about(this, "Результат запроса", "Не найдено подходящих записей!");
+        }
+    }
+}
+
+void MainWindow::on_searchButton_clicked()
+{
+    // Метод поиска по введенному пользователем тексту
+
+    // Значение поля поиска
+    QString searchText = ui->searchInput->text();
+
+    // Очистка предыдущего результата
+    csvModel->clear();
+    csvModel->setHorizontalHeaderLabels(QStringList() << "Имя" << "Фамилия" << "Дата рождения" << "Программа" << "Год обучения");
+
+    // Запускаем проверку наличия записей в файле
+    QStringList resultList;
+    resultList = readCsvFile();
+
+    if (!resultList.size())
+    {
+        QMessageBox::about(this, "Результат запроса", "Записи отсутствуют!");
+    }
+    else
+    {
+        ui->tableView->setModel(csvModel);
+
+        for (int i = 0; i < resultList.size(); i++)
+        {
+            QString resultListItem = resultList[i];
+            QList<QStandardItem *> standardItemsList;
+
+            // Проверяем совпадение введенного текста в строке
+            // Если в строке есть совпадение, то продолжаем дальнейшую обработку
+            if (resultListItem.contains(searchText, Qt::CaseInsensitive))
+            {
+                // Разбиваем строку из файла на элементы, разделенные запятой и записываем в переменную
+                for (QString item : resultListItem.split(",")) {
+                    // .simplified() - убирает переносы и др спец символы
+                    standardItemsList.append(new QStandardItem(item.simplified()));
+                }
+
+                // Добавляем в модель преобразованную запись из файла
+                csvModel->insertRow(csvModel->rowCount(), standardItemsList);
+            }
+        }
+
+        // Выводим сообщение если ничего не найдено
+        if (!csvModel->rowCount()) {
+            QMessageBox::about(this, "Результат запроса", "Совпадений не найдено!");
         }
     }
 }

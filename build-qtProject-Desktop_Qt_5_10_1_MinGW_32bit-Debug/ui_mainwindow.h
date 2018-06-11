@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -30,8 +31,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QPushButton *readFileButton;
-    QPushButton *addNoteButton;
     QLabel *label;
     QPushButton *createItemButton;
     QLabel *listStatusLabel;
@@ -41,6 +40,9 @@ public:
     QPushButton *showListButton;
     QListWidget *listLearningProgram;
     QListWidget *listLearningYear;
+    QLineEdit *searchInput;
+    QLabel *label_4;
+    QPushButton *searchButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -52,12 +54,6 @@ public:
         MainWindow->resize(1010, 584);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        readFileButton = new QPushButton(centralWidget);
-        readFileButton->setObjectName(QStringLiteral("readFileButton"));
-        readFileButton->setGeometry(QRect(720, 470, 121, 28));
-        addNoteButton = new QPushButton(centralWidget);
-        addNoteButton->setObjectName(QStringLiteral("addNoteButton"));
-        addNoteButton->setGeometry(QRect(850, 470, 121, 28));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 15, 251, 21));
@@ -74,7 +70,7 @@ public:
         listStatusLabel->setFont(font);
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(350, 120, 631, 331));
+        tableView->setGeometry(QRect(350, 160, 631, 291));
         tableView->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
         tableView->verticalHeader()->setProperty("showSortIndicator", QVariant(true));
         label_2 = new QLabel(centralWidget);
@@ -92,6 +88,15 @@ public:
         listLearningYear = new QListWidget(centralWidget);
         listLearningYear->setObjectName(QStringLiteral("listLearningYear"));
         listLearningYear->setGeometry(QRect(10, 310, 311, 141));
+        searchInput = new QLineEdit(centralWidget);
+        searchInput->setObjectName(QStringLiteral("searchInput"));
+        searchInput->setGeometry(QRect(410, 120, 131, 22));
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(350, 120, 55, 16));
+        searchButton = new QPushButton(centralWidget);
+        searchButton->setObjectName(QStringLiteral("searchButton"));
+        searchButton->setGeometry(QRect(570, 120, 93, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -112,14 +117,14 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        readFileButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\321\207\320\270\321\202\320\260\321\202\321\214 \321\204\320\260\320\271\320\273", nullptr));
-        addNoteButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\267\320\260\320\277\320\270\321\201\321\214", nullptr));
         label->setText(QApplication::translate("MainWindow", "\320\241\320\270\321\201\321\202\320\265\320\274\320\260 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\321\217 \320\264\320\260\320\275\320\275\321\213\320\274\320\270 \321\201\321\202\321\203\320\264\320\265\320\275\321\202\320\276\320\262", nullptr));
         createItemButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\275\320\276\320\262\321\203\321\216 \320\267\320\260\320\277\320\270\321\201\321\214", nullptr));
         listStatusLabel->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\320\275\320\275\321\213\320\265 \320\267\320\260\320\277\320\270\321\201\320\270", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "\320\235\320\260\320\271\320\264\320\265\320\275\320\275\321\213\320\265 \320\267\320\260\320\277\320\270\321\201\320\270", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 \320\267\320\260\320\277\320\270\321\201\320\265\320\271", nullptr));
         showListButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214 \320\267\320\260\320\277\320\270\321\201\320\270", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272", nullptr));
+        searchButton->setText(QApplication::translate("MainWindow", "\320\235\320\260\320\271\321\202\320\270", nullptr));
     } // retranslateUi
 
 };

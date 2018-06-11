@@ -23,6 +23,8 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_showFullListButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *csvModel;
